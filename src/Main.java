@@ -1,30 +1,30 @@
 import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.geometry.Pos;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import javax.swing.text.Position;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }
+    private static final int CUBE = 50;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        Board battelBoard = new Board();
-        battelBoard.start(new Stage());
+    public void start(Stage Stage) throws Exception {
+        Rectangle cube = new Rectangle(CUBE, CUBE);
+        cube.setLocation(100, 100);
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScene.fxml"));
+        Parent root = loader.load();
 
+        Scene scene = new Scene(root);
+        String css = this.getClass().getResource("application.css").toExternalForm();
 
+        scene.getStylesheets().add(css);
+        Stage.setScene(scene);
+        Stage.show();
     }
 }
